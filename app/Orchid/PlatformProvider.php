@@ -47,6 +47,15 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.shield')
                 ->route('platform.systems.roles')
                 ->permission('platform.systems.roles'),
+
+            Menu::make('Social Links')
+                ->icon('bs.share')
+                ->route('platform.social-links')
+                ->title('Website'),
+
+            Menu::make('Contact Info')
+                ->icon('bs.telephone')
+                ->route('platform.contact-info'),
         ];
     }
 

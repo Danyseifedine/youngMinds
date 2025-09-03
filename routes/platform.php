@@ -5,6 +5,10 @@ declare(strict_types=1);
 use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
+use App\Orchid\Screens\ContactInfoEditScreen;
+use App\Orchid\Screens\ContactInfoListScreen;
+use App\Orchid\Screens\SocialLinkEditScreen;
+use App\Orchid\Screens\SocialLinkListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
@@ -74,3 +78,45 @@ Route::screen('roles', RoleListScreen::class)
     ->breadcrumbs(fn(Trail $trail) => $trail
         ->parent('platform.index')
         ->push(__('Roles'), route('platform.systems.roles')));
+
+// Platform > Social Links > Social Link
+Route::screen('social-links/{socialLink}/edit', SocialLinkEditScreen::class)
+    ->name('platform.social-links.edit')
+    ->breadcrumbs(fn(Trail $trail, $socialLink) => $trail
+        ->parent('platform.social-links')
+        ->push('Edit', route('platform.social-links.edit', $socialLink)));
+
+// Platform > Social Links > Create
+Route::screen('social-links/create', SocialLinkEditScreen::class)
+    ->name('platform.social-links.edit')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.social-links')
+        ->push('Create', route('platform.social-links.edit')));
+
+// Platform > Social Links
+Route::screen('social-links', SocialLinkListScreen::class)
+    ->name('platform.social-links')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push('Social Links', route('platform.social-links')));
+
+// Platform > Contact Info > Contact Info
+Route::screen('contact-info/{contactInfo}/edit', ContactInfoEditScreen::class)
+    ->name('platform.contact-info.edit')
+    ->breadcrumbs(fn(Trail $trail, $contactInfo) => $trail
+        ->parent('platform.contact-info')
+        ->push('Edit', route('platform.contact-info.edit', $contactInfo)));
+
+// Platform > Contact Info > Create
+Route::screen('contact-info/create', ContactInfoEditScreen::class)
+    ->name('platform.contact-info.edit')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.contact-info')
+        ->push('Create', route('platform.contact-info.edit')));
+
+// Platform > Contact Info
+Route::screen('contact-info', ContactInfoListScreen::class)
+    ->name('platform.contact-info')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push('Contact Info', route('platform.contact-info')));

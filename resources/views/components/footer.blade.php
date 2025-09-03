@@ -6,14 +6,23 @@
                 <div class="single-footer-widget footer_2">
                     <h4>About Technology</h4>
                     <p>
-                        Empowering the next generation with hands-on experience in robotics, coding, and innovative technology.
-                        Join our community to explore the future of tech, from Arduino to artificial intelligence, and unlock endless possibilities!
+                        Empowering the next generation with hands-on experience in robotics, coding, and innovative
+                        technology.
+                        Join our community to explore the future of tech, from Arduino to artificial intelligence, and
+                        unlock endless possibilities!
                     </p>
                     <div class="social_icon">
-                        <a href="#"> <i class="fab fa-facebook-f"></i> </a>
-                        <a href="#"> <i class="fab fa-twitter"></i> </a>
-                        <a href="#"> <i class="fab fa-instagram"></i> </a>
-                        <a href="#"> <i class="fab fa-skype"></i> </a>
+                        @php
+                            $socialLinks = \App\Models\SocialLink::active()->ordered()->get();
+                        @endphp
+
+                        @if ($socialLinks->count() > 0)
+                            @foreach ($socialLinks as $link)
+                                <a href="{{ $link->url }}" style="font-size: 18px;" target="_blank">
+                                    <i class="{{ $link->icon }}"></i>
+                                </a>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
@@ -21,9 +30,19 @@
                 <div class="single-footer-widget footer_2">
                     <h4>Contact us</h4>
                     <div class="contact_info">
-                        <p><span> Address :</span> Young Minds Tech Center, Innovation District </p>
-                        <p><span> Phone :</span> +1 234 567 (8900)</p>
-                        <p><span> Email : </span>info@youngminds.tech </p>
+                        @php
+                            $contactInfo = \App\Models\ContactInfo::active()->get();
+                        @endphp
+                        
+                        @if($contactInfo->count() > 0)
+                            @foreach($contactInfo as $info)
+                                <p><span>{{ ucfirst($info->key) }} :</span> {{ $info->value }}</p>
+                            @endforeach
+                        @else
+                            <p><span> Address :</span> Young Minds Tech Center, Innovation District </p>
+                            <p><span> Phone :</span> +1 234 567 (8900)</p>
+                            <p><span> Email : </span>info@youngminds.tech </p>
+                        @endif
                     </div>
                 </div>
             </div>
