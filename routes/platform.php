@@ -7,6 +7,10 @@ use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\ContactInfoEditScreen;
 use App\Orchid\Screens\ContactInfoListScreen;
+use App\Orchid\Screens\EventEditScreen;
+use App\Orchid\Screens\EventListScreen;
+use App\Orchid\Screens\StudentImageEditScreen;
+use App\Orchid\Screens\StudentImageListScreen;
 use App\Orchid\Screens\SocialLinkEditScreen;
 use App\Orchid\Screens\SocialLinkListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
@@ -120,3 +124,45 @@ Route::screen('contact-info', ContactInfoListScreen::class)
     ->breadcrumbs(fn(Trail $trail) => $trail
         ->parent('platform.index')
         ->push('Contact Info', route('platform.contact-info')));
+
+// Platform > Events > Event
+Route::screen('events/{event}/edit', EventEditScreen::class)
+    ->name('platform.events.edit')
+    ->breadcrumbs(fn(Trail $trail, $event) => $trail
+        ->parent('platform.events')
+        ->push('Edit', route('platform.events.edit', $event)));
+
+// Platform > Events > Create
+Route::screen('events/create', EventEditScreen::class)
+    ->name('platform.events.create')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.events')
+        ->push('Create', route('platform.events.create')));
+
+// Platform > Events
+Route::screen('events', EventListScreen::class)
+    ->name('platform.events')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push('Events & Workshops', route('platform.events')));
+
+// Platform > Student Images > Student Image
+Route::screen('student-images/{studentImage}/edit', StudentImageEditScreen::class)
+    ->name('platform.student-images.edit')
+    ->breadcrumbs(fn(Trail $trail, $studentImage) => $trail
+        ->parent('platform.student-images')
+        ->push('Edit', route('platform.student-images.edit', $studentImage)));
+
+// Platform > Student Images > Create
+Route::screen('student-images/create', StudentImageEditScreen::class)
+    ->name('platform.student-images.create')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.student-images')
+        ->push('Add Image', route('platform.student-images.create')));
+
+// Platform > Student Images
+Route::screen('student-images', StudentImageListScreen::class)
+    ->name('platform.student-images')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push('Student Gallery', route('platform.student-images')));

@@ -56,6 +56,14 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make('Contact Info')
                 ->icon('bs.telephone')
                 ->route('platform.contact-info'),
+
+            Menu::make('Events & Workshops')
+                ->icon('bs.calendar-event')
+                ->route('platform.events'),
+
+            Menu::make('Student Gallery')
+                ->icon('bs.images')
+                ->route('platform.student-images'),
         ];
     }
 
