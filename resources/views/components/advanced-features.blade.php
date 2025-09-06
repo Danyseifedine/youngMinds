@@ -4,23 +4,24 @@
         <div class="row align-items-sm-center align-items-xl-stretch">
             <div class="col-md-6 col-lg-6">
                 <div class="learning_member_text">
-                    <h5>Advanced Technology</h5>
-                    <h2>Interactive Learning
-                        Platform</h2>
-                    <p>Our cutting-edge learning platform combines virtual simulations with real hardware, allowing students to program Arduino boards, build robots, and test their creations in both digital and physical environments.</p>
+                    <h5>{{ $section9['heading'] }}</h5>
+                    <h2>{{ $section9['title'] }}</h2>
+                    </h2>
+                    <p>{{ $section9['text'] }}</p>
                     <div class="row">
                         <div class="col-sm-6 col-md-12 col-lg-6">
                             <div class="learning_member_text_iner">
                                 <span class="fas fa-pencil-alt"></span>
-                                <h4>Code Anywhere</h4>
-                                <p>Access our Arduino IDE and robot simulators from anywhere with cloud-based programming tools</p>
+                                <h4>{{ $section9['point_1_title'] }}</h4>
+                                <p>{{ $section9['point_1_description'] }}</p>
+                                </p>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-12 col-lg-6">
                             <div class="learning_member_text_iner">
                                 <span class="fas fa-certificate"></span>
-                                <h4>Robotics Mentors</h4>
-                                <p>Learn from certified robotics engineers and experienced programming instructors</p>
+                                <h4>{{ $section9['point_2_title'] }}</h4>
+                                <p>{{ $section9['point_2_description'] }}</p>
                             </div>
                         </div>
                     </div>

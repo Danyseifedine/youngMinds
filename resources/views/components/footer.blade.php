@@ -2,14 +2,16 @@
 <footer id="contact" class="footer-area">
     <div class="container">
         <div class="row justify-content-between">
+            <div class="col-sm-6 col-md-4 col-xl-4 text-center">
+                <img class="mb-5" src="{{ asset('img/logo_no_bg.png') }}" alt="YoungBotMinds"
+                    style="width: 230px; height: 120px;">
+            </div>
             <div class="col-sm-6 col-md-4 col-xl-4">
                 <div class="single-footer-widget footer_2">
-                    <h4>About Technology</h4>
+                    <h4>{{ $section10['title'] }}</h4>
                     <p>
-                        Empowering the next generation with hands-on experience in robotics, coding, and innovative
-                        technology.
-                        Join our community to explore the future of tech, from Arduino to artificial intelligence, and
-                        unlock endless possibilities!
+                        {{ $section10['text'] }}
+                    </p>
                     </p>
                     <div class="social_icon">
                         @php
@@ -26,6 +28,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="col-xl-3 col-sm-6 col-md-4">
                 <div class="single-footer-widget footer_2">
                     <h4>Contact us</h4>
@@ -33,9 +36,9 @@
                         @php
                             $contactInfo = \App\Models\ContactInfo::active()->get();
                         @endphp
-                        
-                        @if($contactInfo->count() > 0)
-                            @foreach($contactInfo as $info)
+
+                        @if ($contactInfo->count() > 0)
+                            @foreach ($contactInfo as $info)
                                 <p><span>{{ ucfirst($info->key) }} :</span> {{ $info->value }}</p>
                             @endforeach
                         @else

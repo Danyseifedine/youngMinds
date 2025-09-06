@@ -8,12 +8,12 @@
                 <div class="section_title text-center" data-aos="fade-up" style="color: white; margin-bottom: 60px;">
                     <h6
                         style="color: #FFCA4C; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px;">
-                        Our Impact</h6>
+                        {{ $section8['heading'] }}</h6>
                     <h2 style="font-size: 48px; font-weight: 700; color: white; margin-bottom: 20px; line-height: 1.2;">
-                        Amazing Numbers</h2>
+                        {{ $section8['title'] }}</h2>
                     <p
                         style="font-size: 18px; color: rgba(255, 255, 255, 0.9); line-height: 1.6; max-width: 600px; margin: 0 auto;">
-                        Join our growing community of young tech innovators building the future!</p>
+                        {{ $section8['text'] }}</p>
                 </div>
             </div>
         </div>
@@ -36,15 +36,15 @@
                         <div
                             style="display: flex; align-items: baseline; justify-content: center; margin-bottom: 15px;">
                             <span class="counter_number"
-                                style="font-size: 48px; font-weight: 800; color: #FFCA4C; line-height: 1;">7</span>
+                                style="font-size: 48px; font-weight: 800; color: #FFCA4C; line-height: 1;">{{ $section8['stat1_number'] }}</span>
                             <span class="counter_plus"
                                 style="font-size: 32px; font-weight: 700; color: #FFCA4C; margin-left: 5px;">+</span>
                         </div>
                         <h4
                             style="font-size: 24px; font-weight: 700; color: white; margin-bottom: 10px; line-height: 1.3;">
-                            Expert Teachers</h4>
+                            {{ $section8['stat1_title'] }}</h4>
                         <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.6; font-size: 16px; margin: 0;">
-                            Certified robotics & programming instructors</p>
+                            {{ $section8['stat1_text'] }}</p>
                     </div>
                 </div>
             </div>
@@ -66,15 +66,15 @@
                         <div
                             style="display: flex; align-items: baseline; justify-content: center; margin-bottom: 15px;">
                             <span class="counter_number"
-                                style="font-size: 48px; font-weight: 800; color: #FFCA4C; line-height: 1;">10</span>
+                                style="font-size: 48px; font-weight: 800; color: #FFCA4C; line-height: 1;">{{ $section8['stat2_number'] }}</span>
                             <span class="counter_plus"
                                 style="font-size: 32px; font-weight: 700; color: #FFCA4C; margin-left: 5px;">+</span>
                         </div>
                         <h4
                             style="font-size: 24px; font-weight: 700; color: white; margin-bottom: 10px; line-height: 1.3;">
-                            Tech Courses</h4>
+                            {{ $section8['stat2_title'] }}</h4>
                         <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.6; font-size: 16px; margin: 0;">
-                            Arduino, robotics & programming courses</p>
+                            {{ $section8['stat2_text'] }}</p>
                     </div>
                 </div>
             </div>
@@ -96,15 +96,15 @@
                         <div
                             style="display: flex; align-items: baseline; justify-content: center; margin-bottom: 15px;">
                             <span class="counter_number"
-                                style="font-size: 48px; font-weight: 800; color: #FFCA4C; line-height: 1;">80</span>
+                                style="font-size: 48px; font-weight: 800; color: #FFCA4C; line-height: 1;">{{ $section8['stat3_number'] }}</span>
                             <span class="counter_plus"
                                 style="font-size: 32px; font-weight: 700; color: #FFCA4C; margin-left: 5px;">+</span>
                         </div>
                         <h4
                             style="font-size: 24px; font-weight: 700; color: white; margin-bottom: 10px; line-height: 1.3;">
-                            Active Students</h4>
-                        <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.6; font-size: 16px; margin: 0;">Young
-                            minds learning and creating</p>
+                            {{ $section8['stat3_title'] }}</h4>
+                        <p style="color: rgba(255, 255, 255, 0.8); line-height: 1.6; font-size: 16px; margin: 0;">
+                            {{ $section8['stat3_text'] }}</p>
                     </div>
                 </div>
             </div>
@@ -115,15 +115,16 @@
             <div class="col-12 text-center" data-aos="fade-up" data-aos-delay="400">
                 <div
                     style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px; padding: 40px; margin-top: 60px;">
-                    <h3 style="font-size: 32px; font-weight: 700; color: white; margin-bottom: 15px;">Ready to Join Our
-                        Community?</h3>
-                    <p style="font-size: 18px; color: rgba(255, 255, 255, 0.9); margin-bottom: 30px;">Start your journey
-                        in robotics and programming today!</p>
-                    <a href="#courses"
+                    <h3 style="font-size: 32px; font-weight: 700; color: white; margin-bottom: 15px;">
+                        {{ $section8['additional_info_title'] }}</h3>
+                    </h3>
+                    <p style="font-size: 18px; color: rgba(255, 255, 255, 0.9); margin-bottom: 30px;">
+                        {{ $section8['additional_info_subtitle'] }}</p>
+                    <a href="{{ route('registration.form') }}"
                         style="background: linear-gradient(135deg, #FFCA4C, #FFD700); color: #0c2e60; padding: 18px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 16px; display: inline-block; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(255, 202, 76, 0.3);"
                         onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 15px 40px rgba(255, 202, 76, 0.4)'"
                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(255, 202, 76, 0.3)'">
-                        Get Started Now
+                        {{ $section8['additional_info_cta_button_text'] }}
                     </a>
                 </div>
             </div>

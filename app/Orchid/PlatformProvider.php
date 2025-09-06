@@ -53,6 +53,10 @@ class PlatformProvider extends OrchidServiceProvider
                 ->route('platform.social-links')
                 ->title('Website'),
 
+            Menu::make('Website Content')
+                ->icon('bs.file-earmark-text')
+                ->route('platform.cms'),
+
             Menu::make('Contact Info')
                 ->icon('bs.telephone')
                 ->route('platform.contact-info'),
@@ -64,6 +68,15 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make('Student Gallery')
                 ->icon('bs.images')
                 ->route('platform.student-images'),
+
+            Menu::make('Courses')
+                ->icon('bs.book')
+                ->route('platform.courses')
+                ->title('Registration'),
+
+            Menu::make('Registrations')
+                ->icon('bs.person-plus')
+                ->route('platform.registrations'),
         ];
     }
 

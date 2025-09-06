@@ -10,14 +10,13 @@
                         <i class="fas fa-calendar-alt"></i>
                     </span>
                     <h2 class="fw-bold mb-3" style="color: #333; font-size: clamp(2rem, 5vw, 3rem);">
-                        Upcoming <span style="color: #FFCA4C;">Events</span> & Workshops
+                        {{ $section6['before_highlighted_word'] }} <span style="color: #FFCA4C;">{{ $section6['highlighted_word'] }}</span> {{ $section6['after_highlighted_word'] }}
                     </h2>
                     <div class="title-underline mx-auto mb-4"
                         style="width: 80px; height: 4px; background: linear-gradient(90deg, #FFCA4C, #FFD700); border-radius: 2px;">
                     </div>
                     <p class="lead mb-5" style="color: #666; font-size: clamp(1rem, 2.5vw, 1.1rem); line-height: 1.7;">
-                        Join our exciting workshops and events designed to inspire creativity and learning in robotics
-                        and coding.
+                        {{ $section6['subtitle'] }}
                     </p>
                 </div>
             </div>

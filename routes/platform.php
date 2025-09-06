@@ -7,12 +7,17 @@ use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\ContactInfoEditScreen;
 use App\Orchid\Screens\ContactInfoListScreen;
+use App\Orchid\Screens\CMSEditScreen;
 use App\Orchid\Screens\EventEditScreen;
 use App\Orchid\Screens\EventListScreen;
 use App\Orchid\Screens\StudentImageEditScreen;
 use App\Orchid\Screens\StudentImageListScreen;
 use App\Orchid\Screens\SocialLinkEditScreen;
 use App\Orchid\Screens\SocialLinkListScreen;
+use App\Orchid\Screens\CourseEditScreen;
+use App\Orchid\Screens\CourseListScreen;
+use App\Orchid\Screens\RegistrationEditScreen;
+use App\Orchid\Screens\RegistrationListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
@@ -118,6 +123,13 @@ Route::screen('contact-info/create', ContactInfoEditScreen::class)
         ->parent('platform.contact-info')
         ->push('Create', route('platform.contact-info.edit')));
 
+// Platform > Website Content (CMS)
+Route::screen('cms', CMSEditScreen::class)
+    ->name('platform.cms')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push('Website Content', route('platform.cms')));
+
 // Platform > Contact Info
 Route::screen('contact-info', ContactInfoListScreen::class)
     ->name('platform.contact-info')
@@ -166,3 +178,45 @@ Route::screen('student-images', StudentImageListScreen::class)
     ->breadcrumbs(fn(Trail $trail) => $trail
         ->parent('platform.index')
         ->push('Student Gallery', route('platform.student-images')));
+
+// Platform > Courses > Course
+Route::screen('courses/{course}/edit', CourseEditScreen::class)
+    ->name('platform.courses.edit')
+    ->breadcrumbs(fn(Trail $trail, $course) => $trail
+        ->parent('platform.courses')
+        ->push('Edit', route('platform.courses.edit', $course)));
+
+// Platform > Courses > Create
+Route::screen('courses/create', CourseEditScreen::class)
+    ->name('platform.courses.create')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.courses')
+        ->push('Create', route('platform.courses.create')));
+
+// Platform > Courses
+Route::screen('courses', CourseListScreen::class)
+    ->name('platform.courses')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push('Courses', route('platform.courses')));
+
+// Platform > Registrations > Registration
+Route::screen('registrations/{registration}/edit', RegistrationEditScreen::class)
+    ->name('platform.registrations.edit')
+    ->breadcrumbs(fn(Trail $trail, $registration) => $trail
+        ->parent('platform.registrations')
+        ->push('Edit', route('platform.registrations.edit', $registration)));
+
+// Platform > Registrations > Create
+Route::screen('registrations/create', RegistrationEditScreen::class)
+    ->name('platform.registrations.create')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.registrations')
+        ->push('Create', route('platform.registrations.create')));
+
+// Platform > Registrations
+Route::screen('registrations', RegistrationListScreen::class)
+    ->name('platform.registrations')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push('Registrations', route('platform.registrations')));

@@ -9,15 +9,13 @@
                         <i class="fas fa-user-graduate"></i>
                     </span>
                     <h2 class="fw-bold mb-3" style="color: #333; font-size: clamp(2rem, 5vw, 3rem);">
-                        Our Amazing <span style="color: #FFCA4C;">Students</span>
+                        {{ $section5['before_highlighted_word'] }} <span
+                            style="color: #FFCA4C;">{{ $section5['highlighted_word'] }}</span>
+                        {{ $section5['after_highlighted_word'] }}
                     </h2>
                     <div class="title-underline mx-auto mb-4"
                         style="width: 80px; height: 4px; background: linear-gradient(90deg, #FFCA4C, #FFD700); border-radius: 2px;">
                     </div>
-                    <p class="lead" style="color: #666; font-size: 1.1rem; line-height: 1.7;">
-                        Meet the brilliant young minds who have mastered robotics and coding through our innovative
-                        programs.
-                    </p>
                 </div>
             </div>
         </div>
