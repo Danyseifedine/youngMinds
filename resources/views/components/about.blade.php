@@ -1,8 +1,8 @@
 <!-- learning part start-->
 <section id="about" class="learning_part">
     <div class="container">
-        <div class="row align-items-sm-center align-items-lg-stretch">
-            <div class="col-md-7 col-lg-7" data-aos="fade-left">
+        <div class="row align-items-sm-center">
+            <div class="col-md-7 col-lg-7">
                 <div class="learning_img">
                     <img src="img/learning_img.png" alt="">
                 </div>

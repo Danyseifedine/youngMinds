@@ -81,10 +81,10 @@
 
 <body>
 
-    @include('components.header')
+    @include('components.header', ['showMenu' => false])
     <div style="margin-top: 100px;"
         class="container-fluid min-vh-100 d-flex align-items-center justify-content-center py-5">
-        <div class="row justify-content-center w-100">
+        <div class="row justify-content-center w-100 g-0">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
                 <div class="card shadow-lg border-0 rounded-lg">
                     <div class="card-body p-4 p-md-5">
@@ -348,6 +348,18 @@
     </script>
 
     <style>
+        /* Fix horizontal overflow and white space issues */
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         /* Custom Form Styling */
         .form-control:focus,
         .form-select:focus {
@@ -365,18 +377,32 @@
             border-color: #FFCA4C;
         }
 
-        /* Remove card and padding on very small screens */
-        @media (max-width: 450px) {
-            .card {
-                box-shadow: none !important;
-                border: none !important;
-                background: transparent !important;
-            }
+        /* Prevent container from causing overflow */
+        .container-fluid {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
 
-            .card-body {
-                padding: 0 !important;
-            }
+        /* Fix row margins causing overflow */
+        .row {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            max-width: 100vw;
+        }
 
+        /* Ensure columns don't overflow */
+        [class*="col-"] {
+            padding-left: 8px;
+            padding-right: 8px;
+            max-width: 100%;
+        }
+
+        /* Mobile First Responsive Design */
+        @media (max-width: 575px) {
             .container-fluid {
                 padding: 0 !important;
             }
@@ -385,43 +411,23 @@
                 margin: 0 !important;
             }
 
-            .col-12 {
-                padding: 0 !important;
-            }
-
-            /* Add minimal padding to form elements */
-            .mb-4 {
-                padding: 0 15px !important;
-            }
-
-            .text-center {
-                padding: 0 15px !important;
-            }
-
-            .form-actions {
-                padding: 0 15px !important;
-            }
-        }
-
-        /* Responsive improvements */
-        @media (max-width: 576px) {
-            .card-body {
-                padding: 1.5rem !important;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container-fluid {
-                padding: 0 15px;
+            [class*="col-"] {
+                padding: 0 8px !important;
             }
 
             .card {
-                margin: 0 10px;
+                margin: 0 !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                border: none !important;
+                background: transparent !important;
             }
-        }
 
-        /* Better spacing for mobile */
-        @media (max-width: 480px) {
+            .card-body {
+                padding: 15px !important;
+            }
+
+            /* Fix form sections spacing */
             .mb-4 {
                 margin-bottom: 1.5rem !important;
             }
@@ -429,6 +435,59 @@
             .mb-3 {
                 margin-bottom: 1rem !important;
             }
+        }
+
+        /* Very small screens */
+        @media (max-width: 450px) {
+            .card-body {
+                padding: 10px !important;
+            }
+            
+            .form-control,
+            .form-select {
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 350px) {
+            .card-body {
+                padding: 5px !important;
+            }
+            
+            .text-center h2 {
+                font-size: 1.5rem !important;
+            }
+        }
+
+        /* Medium screens improvements */
+        @media (min-width: 576px) and (max-width: 768px) {
+            .container-fluid {
+                padding: 0 15px;
+            }
+
+            .card {
+                margin: 0 auto;
+                max-width: 100%;
+            }
+        }
+
+        /* Large screens */
+        @media (min-width: 769px) {
+            .container-fluid {
+                padding: 0 20px;
+            }
+        }
+
+        /* Fix any potential Bootstrap gutter issues */
+        .g-0,
+        .gx-0 {
+            --bs-gutter-x: 0;
+        }
+
+        .g-0,
+        .gy-0 {
+            --bs-gutter-y: 0;
         }
     </style>
 
