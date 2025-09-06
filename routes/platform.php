@@ -97,10 +97,10 @@ Route::screen('social-links/{socialLink}/edit', SocialLinkEditScreen::class)
 
 // Platform > Social Links > Create
 Route::screen('social-links/create', SocialLinkEditScreen::class)
-    ->name('platform.social-links.edit')
+    ->name('platform.social-links.create')
     ->breadcrumbs(fn(Trail $trail) => $trail
         ->parent('platform.social-links')
-        ->push('Create', route('platform.social-links.edit')));
+        ->push('Create', route('platform.social-links.create')));
 
 // Platform > Social Links
 Route::screen('social-links', SocialLinkListScreen::class)
@@ -118,10 +118,10 @@ Route::screen('contact-info/{contactInfo}/edit', ContactInfoEditScreen::class)
 
 // Platform > Contact Info > Create
 Route::screen('contact-info/create', ContactInfoEditScreen::class)
-    ->name('platform.contact-info.edit')
+    ->name('platform.contact-info.create')
     ->breadcrumbs(fn(Trail $trail) => $trail
         ->parent('platform.contact-info')
-        ->push('Create', route('platform.contact-info.edit')));
+        ->push('Create', route('platform.contact-info.create')));
 
 // Platform > Website Content (CMS)
 Route::screen('cms', CMSEditScreen::class)

@@ -208,6 +208,11 @@
 
     @include('components.footer')
 
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
     <!-- Success Toast -->
     @if (session('success'))
         <div id="successToast" class="position-fixed"
@@ -271,7 +276,87 @@
         if (document.getElementById('successToast')) {
             setTimeout(closeToast, 5000);
         }
+
+        // Scroll to Top functionality
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+
+        // Show/hide button based on scroll position
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        });
+
+        // Smooth scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
     </script>
+
+    <!-- Scroll to Top Button Styles -->
+    <style>
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #FFCA4C, #FFD700);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 202, 76, 0.4);
+        }
+
+        .scroll-to-top:hover {
+            background: linear-gradient(135deg, #FFD700, #FFCA4C);
+            transform: translateY(0);
+            box-shadow: 0 6px 20px rgba(255, 202, 76, 0.6);
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top:active {
+            transform: scale(0.95);
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .scroll-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .scroll-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 14px;
+            }
+        }
+    </style>
 </body>
 
 </html>

@@ -36,7 +36,7 @@ class SocialLinkListScreen extends Screen
         return [
             Link::make('Add Social Link')
                 ->icon('bs.plus-circle')
-                ->route('platform.social-links.edit')
+                ->route('platform.social-links.create')
         ];
     }
 

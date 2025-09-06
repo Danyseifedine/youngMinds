@@ -108,7 +108,7 @@
                     <p class="mb-4" style="color: white; font-size: clamp(1rem, 2.5vw, 1.1rem); opacity: 0.9;">
                         {{ $section3['additional_subtitle'] }}</p>
                     <a href="{{ route('registration.form') }}" class="btn btn-light btn-lg px-5 py-3 fw-bold"
-                        style="border-radius: 50px; font-size: clamp(1rem, 2.5vw, 1.1rem); min-width: 200px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); transition: all 0.3s ease;">GET
+                        style="border-radius: 50px; font-size: clamp(1rem, 2.5vw, 1.1rem); min-width: 200px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); transition: all 0.3s ease;">
                         {{ $section3['additional_cta_button_text'] }}</a>
                 </div>
             </div>

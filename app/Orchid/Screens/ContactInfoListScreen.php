@@ -36,7 +36,7 @@ class ContactInfoListScreen extends Screen
         return [
             Link::make('Add Contact Info')
                 ->icon('bs.plus-circle')
-                ->route('platform.contact-info.edit')
+                ->route('platform.contact-info.create')
         ];
     }
 
