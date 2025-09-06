@@ -37,17 +37,6 @@ class PlatformProvider extends OrchidServiceProvider
     public function menu(): array
     {
         return [
-            Menu::make(__('Users'))
-                ->icon('bs.people')
-                ->route('platform.systems.users')
-                ->permission('platform.systems.users')
-                ->title(__('Access Controls')),
-
-            Menu::make(__('Roles'))
-                ->icon('bs.shield')
-                ->route('platform.systems.roles')
-                ->permission('platform.systems.roles'),
-
             Menu::make('Social Links')
                 ->icon('bs.share')
                 ->route('platform.social-links')
@@ -77,6 +66,17 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make('Registrations')
                 ->icon('bs.person-plus')
                 ->route('platform.registrations'),
+
+            Menu::make(__('Users'))
+                ->icon('bs.people')
+                ->route('platform.systems.users')
+                ->permission('platform.systems.users')
+                ->title(__('Access Controls')),
+
+            Menu::make(__('Roles'))
+                ->icon('bs.shield')
+                ->route('platform.systems.roles')
+                ->permission('platform.systems.roles'),
         ];
     }
 
