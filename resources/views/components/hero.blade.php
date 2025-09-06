@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row align-items-center min-vh-100">
             <div class="col-lg-6 col-xl-6 col-md-12 col-sm-12">
-                <div class="banner_text" style="margin-bottom: 100px;">
+                <div class="banner_text" style="">
                     <div class="banner_text_iner">
                         <h5 class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">{{ $section1['subtitle'] }}
                         </h5>
@@ -11,7 +11,8 @@
                         <p class="hero-description" data-aos="fade-up" data-aos-delay="600">
                             {{ $section1['description'] }}</p>
                         <div class="hero-buttons" data-aos="fade-up" data-aos-delay="800">
-                            <a href="{{ route('registration.form') }}" class="btn_1">{{ $section1['cta_button_text'] }}</a>
+                            <a href="{{ route('registration.form') }}"
+                                class="btn_1">{{ $section1['cta_button_text'] }}</a>
                         </div>
                     </div>
                 </div>
