@@ -16,6 +16,7 @@ class HomeController extends Controller
             'title' => $cms->hero_title,
             'description' => $cms->hero_description,
             'cta_button_text' => $cms->hero_cta_button_text,
+            'image' => $cms->hero_image,
         ];
 
         $section2 = [
@@ -102,6 +103,7 @@ class HomeController extends Controller
             'point_1' => $cms->about_us_point_1,
             'point_2' => $cms->about_us_point_2,
             'cta_button_text' => $cms->about_us_cta_button_text,
+            'image' => $cms->about_image,
         ];
 
         $section8 = [
@@ -130,6 +132,7 @@ class HomeController extends Controller
             'point_1_description' => $cms->advanced_point_1_description,
             'point_2_title' => $cms->advanced_point_2_title,
             'point_2_description' => $cms->advanced_point_2_description,
+            'image' => $cms->advanced_section_image,
         ];
 
         $section10 = [

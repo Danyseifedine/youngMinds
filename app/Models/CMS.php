@@ -27,6 +27,7 @@ class CMS extends Model
         'hero_title',
         'hero_description',
         'hero_cta_button_text',
+        'hero_image',
 
         // Second Section - Features
         'features_title',
@@ -106,6 +107,7 @@ class CMS extends Model
         'about_us_point_1',
         'about_us_point_2',
         'about_us_cta_button_text',
+        'about_image',
 
         // Eighth Section - Stats
         'stats_heading',
@@ -132,6 +134,7 @@ class CMS extends Model
         'advanced_point_1_description',
         'advanced_point_2_title',
         'advanced_point_2_description',
+        'advanced_section_image',
 
         // Tenth Section - Footer
         'footer_title',

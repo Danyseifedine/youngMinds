@@ -1,10 +1,14 @@
 <!-- learning part start-->
 <section id="about" class="learning_part">
     <div class="container">
-        <div class="row align-items-sm-center">
+        <div class="row">
             <div class="col-md-7 col-lg-7">
                 <div class="learning_img">
-                    <img src="img/learning_img.png" alt="">
+                    @if($section7['image'])
+                        <img src="{{ $section7['image'] }}" alt="{{ $section7['title'] }}">
+                    @else
+                        <img src="img/learning_img.png" alt="">
+                    @endif
                 </div>
             </div>
             <div class="col-md-5 col-lg-5" data-aos="fade-right">

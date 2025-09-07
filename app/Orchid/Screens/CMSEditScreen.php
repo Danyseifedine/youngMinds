@@ -6,6 +6,7 @@ use App\Models\CMS;
 use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
@@ -102,6 +103,11 @@ class CMSEditScreen extends Screen
                         ->title('Hero Call-to-Action Button Text')
                         ->placeholder('e.g., Get Started, Learn More')
                         ->help('Text for the main action button'),
+
+                    Picture::make('cms.hero_image')
+                        ->title('Hero Background Image')
+                        ->storage('public')
+                        ->help('Upload hero section background image'),
                 ]),
 
                 'Features Section' => Layout::rows([
@@ -369,6 +375,11 @@ class CMSEditScreen extends Screen
                     Input::make('cms.about_us_cta_button_text')
                         ->title('About Us - CTA Button Text')
                         ->placeholder('Call-to-action button text'),
+
+                    Picture::make('cms.about_image')
+                        ->title('About Us Image')
+                        ->storage('public')
+                        ->help('Upload about us section image'),
                 ]),
 
                 'Statistics' => Layout::rows([
@@ -456,6 +467,11 @@ class CMSEditScreen extends Screen
                     TextArea::make('cms.advanced_point_2_description')
                         ->title('Advanced Point 2 - Description')
                         ->rows(2),
+
+                    Picture::make('cms.advanced_section_image')
+                        ->title('Advanced Section Image')
+                        ->storage('public')
+                        ->help('Upload advanced section image'),
                 ]),
 
                 'Footer' => Layout::rows([

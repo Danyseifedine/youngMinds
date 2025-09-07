@@ -29,7 +29,11 @@
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="learning_img">
-                    <img src="img/advance_feature_img.png" alt="">
+                    @if($section9['image'])
+                        <img src="{{ $section9['image'] }}" alt="{{ $section9['title'] }}">
+                    @else
+                        <img src="img/advance_feature_img.png" alt="">
+                    @endif
                 </div>
             </div>
         </div>
