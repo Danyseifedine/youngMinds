@@ -140,7 +140,7 @@
                                         style="background: linear-gradient(135deg, #FFCA4C, #FFD700); border-radius: 15px;">
                                         <p class="mb-0 fw-bold"
                                             style="color: white; font-size: clamp(0.85rem, 2vw, 0.95rem);">
-                                            ` {{ $section4['age_card_3_outcome'] }}
+                                            {{ $section4['age_card_3_outcome'] }}
                                         </p>
                                     </div>
                                 </div>
