@@ -69,7 +69,7 @@
                             style="width: 80px; height: 80px; margin: 0 auto; background: linear-gradient(135deg, #FFCA4C, #FFD700); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 25px rgba(255, 202, 76, 0.2);">
                             <i class="fas fa-shield-alt" style="font-size: 35px; color: white;"></i>
                         </div>
-                        <h4 class="mb-3 fw-bold" style="color: #333; font-size: clamp(1.2rem, 3vw, 1.5rem);">Safe &
+                        <h4 class="mb-3 fw-bold" style="color: #333; font-size: clamp(1.2rem, 3vw, 1.5rem);">
                             {{ $section3['feature3_title'] }}</h4>
                         <p class="mb-0" style="color: #666; line-height: 1.7; font-size: clamp(0.9rem, 2.5vw, 1rem);">
                             {{ $section3['feature3_text'] }}</p>
