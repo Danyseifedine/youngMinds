@@ -23,7 +23,7 @@
                     style="background: white; border-radius: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); border: 3px solid transparent; transition: all 0.4s ease; position: relative; overflow: hidden;">
                     <div class="reason-number"
                         style="position: absolute; top: -10px; right: -15px; width: 60px; height: 60px; background: linear-gradient(135deg, #FFCA4C, #FFD700); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; box-shadow: 0 8px 25px rgba(255, 202, 76, 0.3);">
-                        </div>
+                        1</div>
                     <div class="reason-content text-center">
                         <div class="reason-icon mb-4"
                             style="width: 80px; height: 80px; margin: 0 auto; background: linear-gradient(135deg, #FFCA4C, #FFD700); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 25px rgba(255, 202, 76, 0.2);">
