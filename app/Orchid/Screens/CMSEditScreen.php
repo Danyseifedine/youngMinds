@@ -27,7 +27,7 @@ class CMSEditScreen extends Screen
     public function query(): iterable
     {
         $cms = CMS::first();
-        
+
         // Create CMS record if it doesn't exist
         if (!$cms) {
             $cms = CMS::create([]);
@@ -497,7 +497,7 @@ class CMSEditScreen extends Screen
     public function save(Request $request)
     {
         $cmsData = $request->get('cms');
-        
+
         $cms = CMS::first();
         if (!$cms) {
             $cms = new CMS();

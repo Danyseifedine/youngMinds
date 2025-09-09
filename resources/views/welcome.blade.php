@@ -206,6 +206,8 @@
 
     @include('components.advanced-features')
 
+    @include('components.map')
+
     @include('components.footer')
 
     <!-- Scroll to Top Button -->

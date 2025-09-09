@@ -1,11 +1,11 @@
 <!-- banner part start-->
-<section id="home" class="banner_part mb-12" @if($section1['image']) style="position: relative;" @endif>
-    @if($section1['image'])
-    <style>
-        .banner_part:after {
-            background-image: url('{{ $section1['image'] }}') !important;
-        }
-    </style>
+<section id="home" class="banner_part mb-12" @if ($section1['image']) style="position: relative;" @endif>
+    @if ($section1['image'])
+        <style>
+            .banner_part:after {
+                background-image: url('{{ $section1['image'] }}') !important;
+            }
+        </style>
     @endif
     <div class="container">
         <div class="row align-items-center min-vh-100">
@@ -18,7 +18,8 @@
                         <p class="hero-description" data-aos="fade-up" data-aos-delay="600">
                             {{ $section1['description'] }}</p>
                         <div class="hero-buttons" data-aos="fade-up" data-aos-delay="800">
-                            <a href="{{ route('registration.form') }}" class="btn_1">{{ $section1['cta_button_text'] }}</a>
+                            <a href="{{ route('registration.form') }}"
+                                class="btn_1">{{ $section1['cta_button_text'] }}</a>
                         </div>
                     </div>
                 </div>

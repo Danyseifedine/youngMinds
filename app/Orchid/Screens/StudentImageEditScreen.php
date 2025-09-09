@@ -69,9 +69,9 @@ class StudentImageEditScreen extends Screen
                     ->title('Student Image')
                     ->storage('public')
                     ->acceptedFiles('image/*')
-                    ->help('Upload a high-quality image of students in action')
+                    ->help('Upload a high-quality image of students in action (optional - leave empty to keep current image)')
                     ->targetId()
-                    ->required(!$this->studentImage->exists),
+                    ->required(false),
 
                 Input::make('studentImage.title')
                     ->title('Title (Optional)')
@@ -101,9 +101,18 @@ class StudentImageEditScreen extends Screen
     {
         $studentImage->fill($request->get('studentImage', []))->save();
 
-        $studentImage->attachment()->sync(
-            $request->input('attachment', [])
-        );
+        // Only sync attachments if new ones are provided and not empty
+        $attachments = $request->input('attachment', []);
+
+        // Filter out empty values and ensure we have valid attachment IDs
+        $validAttachments = array_filter($attachments, function ($attachmentId) {
+            return !empty($attachmentId) && is_numeric($attachmentId);
+        });
+
+        // Only sync if we have valid attachments
+        if (!empty($validAttachments)) {
+            $studentImage->attachment()->sync($validAttachments);
+        }
 
         Alert::info('Student image was saved successfully.');
 
