@@ -118,6 +118,7 @@ class EventEditScreen extends Screen
                     ->title('End Date')
                     ->enableTime(false)
                     ->format('Y-m-d')
+                    ->allowEmpty()
                     ->help('When the event ends (leave empty if ongoing/no end date)'),
 
                 Input::make('event.location')
