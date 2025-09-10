@@ -90,6 +90,23 @@ class EventEditScreen extends Screen
                     ->help('Select the type of event')
                     ->required(),
 
+                Select::make('event.age_range')
+                    ->title('Age Range')
+                    ->options([
+                        '5-11' => '5-11 years',
+                        '6-10' => '6-10 years',
+                        '8-12' => '8-12 years',
+                        '12-16' => '12-16 years',
+                        '13-17' => '13-17 years',
+                        '14+' => '14+ years',
+                        '16+' => '16+ years',
+                        '18+' => '18+ years',
+                        'All Ages' => 'All Ages'
+                    ])
+                    ->help('Target age group for this event')
+                    ->value('All Ages')
+                    ->required(),
+
                 DateTimer::make('event.start_date')
                     ->title('Start Date')
                     ->enableTime(false)
@@ -101,8 +118,7 @@ class EventEditScreen extends Screen
                     ->title('End Date')
                     ->enableTime(false)
                     ->format('Y-m-d')
-                    ->help('When the event ends (can be same as start date)')
-                    ->required(),
+                    ->help('When the event ends (leave empty if ongoing/no end date)'),
 
                 Input::make('event.location')
                     ->title('Location')

@@ -62,6 +62,11 @@ class EventListScreen extends Screen
                         return '<span class="badge bg-info">' . ucfirst($event->type) . '</span>';
                     }),
 
+                TD::make('age_range', 'Age Range')
+                    ->render(function (Event $event) {
+                        return '<span class="badge bg-secondary">' . $event->age_range . '</span>';
+                    }),
+
                 TD::make('start_date', 'Start Date')
                     ->render(function (Event $event) {
                         return $event->start_date->format('M d, Y');
@@ -69,7 +74,7 @@ class EventListScreen extends Screen
 
                 TD::make('end_date', 'End Date')
                     ->render(function (Event $event) {
-                        return $event->end_date->format('M d, Y');
+                        return $event->end_date ? $event->end_date->format('M d, Y') : '<span class="badge bg-success">Present</span>';
                     }),
 
                 TD::make('location', 'Location')

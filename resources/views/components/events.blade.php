@@ -79,16 +79,17 @@
                                                             <i class="far fa-clock"></i>
                                                             <span>
                                                                 @if ($event->start_date && $event->end_date)
-                                                                    {{ \Carbon\Carbon::parse($event->start_date)->diffInDays(\Carbon\Carbon::parse($event->end_date)) + 1 }}
-                                                                    {{ \Carbon\Carbon::parse($event->start_date)->diffInDays(\Carbon\Carbon::parse($event->end_date)) > 0 ? 'Days' : 'Day' }}
+                                                                    {{ \Carbon\Carbon::parse($event->start_date)->format('M d') }} - {{ \Carbon\Carbon::parse($event->end_date)->format('M d, Y') }}
+                                                                @elseif ($event->start_date)
+                                                                    {{ \Carbon\Carbon::parse($event->start_date)->format('M d, Y') }} - Present
                                                                 @else
-                                                                    Duration TBA
+                                                                    Date TBA
                                                                 @endif
                                                             </span>
                                                         </div>
                                                         <div class="meta-item">
                                                             <i class="far fa-user"></i>
-                                                            <span>All Ages</span>
+                                                            <span>{{ $event->age_range ?? 'All Ages' }}</span>
                                                         </div>
                                                     </div>
 
@@ -360,6 +361,11 @@
         gap: 8px;
         color: #777;
         font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+    .meta-item span {
+        white-space: nowrap;
     }
 
     .meta-item i {
