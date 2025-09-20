@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
 
 <head>
     <!-- Essential Meta Tags -->
@@ -69,6 +69,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
+    <!-- Fonts -->
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cairo:wght@300;400;600;700&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cairo:wght@300;400;600;700&display=swap">
+    </noscript>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <!-- FontAwesome CSS -->
@@ -94,8 +103,12 @@
                                 style="width: 60px; height: 60px; background: linear-gradient(135deg, #FFCA4C, #FFD700);">
                                 <i class="fas fa-graduation-cap fa-2x"></i>
                             </div>
-                            <h2 class="card-title h3 mb-2" style="color: #333;">Course Registration</h2>
-                            <p style="color: #666;">Join our educational programs and start your learning journey</p>
+                            <h2 class="card-title h3 mb-2"
+                                style="color: #333; font-family: {{ app()->getLocale() === 'ar' ? 'Cairo, sans-serif' : 'inherit' }}; direction: {{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}; text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'center' }};">
+                                {{ __('other.course_registration') }}</h2>
+                            <p
+                                style="color: #666; font-family: {{ app()->getLocale() === 'ar' ? 'Cairo, sans-serif' : 'inherit' }}; direction: {{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}; text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'center' }};">
+                                {{ __('other.join_educational_programs') }}</p>
                         </div>
 
                         <!-- Registration Form -->
@@ -104,33 +117,38 @@
 
                             <!-- Child Information Section -->
                             <div class="mb-4">
-                                <h5 class="border-bottom pb-2 mb-3" style="color: #FFCA4C;">
-                                    <i class="fas fa-child me-2"></i>Child Information
+                                <h5 class="border-bottom pb-2 mb-3"
+                                    style="color: #FFCA4C; font-family: {{ app()->getLocale() === 'ar' ? 'Cairo, sans-serif' : 'inherit' }}; direction: {{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}; text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};">
+                                    <i
+                                        class="fas fa-child {{ app()->getLocale() === 'ar' ? 'ms-2' : 'me-2' }}"></i>{{ __('other.child_information') }}
                                 </h5>
 
                                 <div class="mb-3">
-                                    <label for="child_name" class="form-label fw-medium">
-                                        Child Name <span class="text-danger">*</span>
+                                    <label for="child_name" class="form-label fw-medium"
+                                        style="font-family: {{ app()->getLocale() === 'ar' ? 'Cairo, sans-serif' : 'inherit' }}; direction: {{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}; text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};">
+                                        {{ __('other.child_name') }} <span class="text-danger">*</span>
                                     </label>
                                     <input type="text"
                                         class="form-control @error('child_name') is-invalid @enderror" id="child_name"
-                                        name="child_name" required placeholder="Enter child's full name"
+                                        name="child_name" required placeholder="{{ __('other.enter_child_name') }}"
                                         value="{{ old('child_name') }}"
-                                        style="border: 2px solid #e9ecef; border-radius: 10px; padding: 10px 12px;">
+                                        style="border: 2px solid #e9ecef; border-radius: 10px; padding: 10px 12px; font-family: {{ app()->getLocale() === 'ar' ? 'Cairo, sans-serif' : 'inherit' }}; direction: {{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}; text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }}; text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};">
                                     @error('child_name')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="child_age" class="form-label fw-medium">
-                                        Child Age <span class="text-danger">*</span>
+                                    <label for="child_age" class="form-label fw-medium"
+                                        style="font-family: {{ app()->getLocale() === 'ar' ? 'Cairo, sans-serif' : 'inherit' }}; direction: {{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}; text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};">
+                                        {{ __('other.child_age') }} <span class="text-danger">*</span>
                                     </label>
                                     <input type="number"
                                         class="form-control @error('child_age') is-invalid @enderror" id="child_age"
                                         name="child_age" min="3" max="18" required
-                                        placeholder="Enter child's age" value="{{ old('child_age') }}"
-                                        style="border: 2px solid #e9ecef; border-radius: 10px; padding: 10px 12px;">
+                                        placeholder="{{ __('other.enter_child_age') }}"
+                                        value="{{ old('child_age') }}"
+                                        style="border: 2px solid #e9ecef; border-radius: 10px; padding: 10px 12px; font-family: {{ app()->getLocale() === 'ar' ? 'Cairo, sans-serif' : 'inherit' }}; direction: {{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}; text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }}; text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};">
                                     @error('child_age')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -139,19 +157,23 @@
 
                             <!-- Parent/Guardian Information Section -->
                             <div class="mb-4">
-                                <h5 class="border-bottom pb-2 mb-3" style="color: #FFCA4C;">
-                                    <i class="fas fa-users me-2"></i>Parent/Guardian Information
+                                <h5 class="border-bottom pb-2 mb-3"
+                                    style="color: #FFCA4C; font-family: {{ app()->getLocale() === 'ar' ? 'Cairo, sans-serif' : 'inherit' }}; direction: {{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}; text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};">
+                                    <i
+                                        class="fas fa-users {{ app()->getLocale() === 'ar' ? 'ms-2' : 'me-2' }}"></i>{{ __('other.parent_guardian_information') }}
                                 </h5>
 
                                 <div class="mb-3">
-                                    <label for="parent_phone" class="form-label fw-medium">
-                                        Phone Number <span class="text-danger">*</span>
+                                    <label for="parent_phone" class="form-label fw-medium"
+                                        style="font-family: {{ app()->getLocale() === 'ar' ? 'Cairo, sans-serif' : 'inherit' }}; direction: {{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}; text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};">
+                                        {{ __('other.phone_number') }} <span class="text-danger">*</span>
                                     </label>
                                     <input type="tel"
                                         class="form-control @error('parent_phone') is-invalid @enderror"
                                         id="parent_phone" name="parent_phone" required
-                                        placeholder="Enter phone number" value="{{ old('parent_phone') }}"
-                                        style="border: 2px solid #e9ecef; border-radius: 10px; padding: 10px 12px;">
+                                        placeholder="{{ __('other.enter_phone_number') }}"
+                                        value="{{ old('parent_phone') }}"
+                                        style="border: 2px solid #e9ecef; border-radius: 10px; padding: 10px 12px; font-family: {{ app()->getLocale() === 'ar' ? 'Cairo, sans-serif' : 'inherit' }}; direction: {{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}; text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }}; text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};">
                                     @error('parent_phone')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -160,29 +182,36 @@
 
                             <!-- Additional Information Section -->
                             <div class="mb-4">
-                                <h5 class="border-bottom pb-2 mb-3" style="color: #FFCA4C;">
-                                    <i class="fas fa-info-circle me-2"></i>Additional Information
+                                <h5 class="border-bottom pb-2 mb-3"
+                                    style="color: #FFCA4C; font-family: {{ app()->getLocale() === 'ar' ? 'Cairo, sans-serif' : 'inherit' }}; direction: {{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}; text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};">
+                                    <i
+                                        class="fas fa-info-circle {{ app()->getLocale() === 'ar' ? 'ms-2' : 'me-2' }}"></i>{{ __('other.additional_information') }}
                                 </h5>
 
                                 <div class="mb-3">
-                                    <label for="preferred_time_slot" class="form-label fw-medium">
-                                        Preferred Time Slot
+                                    <label for="preferred_time_slot" class="form-label fw-medium"
+                                        style="font-family: {{ app()->getLocale() === 'ar' ? 'Cairo, sans-serif' : 'inherit' }}; direction: {{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}; text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};">
+                                        {{ __('other.preferred_time_slot') }}
                                     </label>
                                     <select class="form-select @error('preferred_time_slot') is-invalid @enderror"
                                         id="preferred_time_slot" name="preferred_time_slot"
-                                        style="border: 2px solid #e9ecef; border-radius: 10px; padding: 10px 12px; line-height: 1.5;">
-                                        <option value="">Select time slot (optional)</option>
+                                        style="border: 2px solid #e9ecef; border-radius: 10px; padding: 10px 12px; line-height: 1.5; font-family: {{ app()->getLocale() === 'ar' ? 'Cairo, sans-serif' : 'inherit' }}; direction: {{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}; text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }}; text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};">
+                                        <option value="">{{ __('other.select_time_slot') }}</option>
                                         <option value="morning"
-                                            {{ old('preferred_time_slot') == 'morning' ? 'selected' : '' }}>Morning
+                                            {{ old('preferred_time_slot') == 'morning' ? 'selected' : '' }}>
+                                            {{ __('other.morning') }}
                                         </option>
                                         <option value="afternoon"
-                                            {{ old('preferred_time_slot') == 'afternoon' ? 'selected' : '' }}>Afternoon
+                                            {{ old('preferred_time_slot') == 'afternoon' ? 'selected' : '' }}>
+                                            {{ __('other.afternoon') }}
                                         </option>
                                         <option value="evening"
-                                            {{ old('preferred_time_slot') == 'evening' ? 'selected' : '' }}>Evening
+                                            {{ old('preferred_time_slot') == 'evening' ? 'selected' : '' }}>
+                                            {{ __('other.evening') }}
                                         </option>
                                         <option value="weekend"
-                                            {{ old('preferred_time_slot') == 'weekend' ? 'selected' : '' }}>Weekend
+                                            {{ old('preferred_time_slot') == 'weekend' ? 'selected' : '' }}>
+                                            {{ __('other.weekend') }}
                                         </option>
                                     </select>
                                     @error('preferred_time_slot')
@@ -194,9 +223,10 @@
                             <!-- Form Actions -->
                             <div class="text-center mt-4">
                                 <button type="submit" class="btn px-4" id="submitBtn"
-                                    style="background: linear-gradient(135deg, #FFCA4C, #FFD700); border: none; color: white; font-weight: 600;">
-                                    <i class="fas fa-paper-plane me-2"></i>
-                                    <span id="submitText">Register</span>
+                                    style="background: linear-gradient(135deg, #FFCA4C, #FFD700); border: none; color: white; font-weight: 600; font-family: {{ app()->getLocale() === 'ar' ? 'Cairo, sans-serif' : 'inherit' }}; direction: {{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}; text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};">
+                                    <i
+                                        class="fas fa-paper-plane {{ app()->getLocale() === 'ar' ? 'ms-2' : 'me-2' }}"></i>
+                                    <span id="submitText">{{ __('other.register') }}</span>
                                 </button>
                             </div>
                         </form>
@@ -211,8 +241,9 @@
         <div class="position-fixed top-0 end-0 p-3" style="z-index: 11;">
             <div id="successToast" class="toast show" role="alert">
                 <div class="toast-header bg-success text-white">
-                    <i class="fas fa-check-circle me-2"></i>
-                    <strong class="me-auto">Success!</strong>
+                    <i class="fas fa-check-circle {{ app()->getLocale() === 'ar' ? 'ms-2' : 'me-2' }}"></i>
+                    <strong class="me-auto"
+                        style="font-family: {{ app()->getLocale() === 'ar' ? 'Cairo, sans-serif' : 'inherit' }}; direction: {{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}; text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};">{{ __('other.success') }}</strong>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
                 </div>
                 <div class="toast-body">
@@ -226,8 +257,9 @@
         <div class="position-fixed top-0 end-0 p-3" style="z-index: 11;">
             <div id="errorToast" class="toast show" role="alert">
                 <div class="toast-header bg-danger text-white">
-                    <i class="fas fa-exclamation-circle me-2"></i>
-                    <strong class="me-auto">Error!</strong>
+                    <i class="fas fa-exclamation-circle {{ app()->getLocale() === 'ar' ? 'ms-2' : 'me-2' }}"></i>
+                    <strong class="me-auto"
+                        style="font-family: {{ app()->getLocale() === 'ar' ? 'Cairo, sans-serif' : 'inherit' }}; direction: {{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}; text-align: {{ app()->getLocale() === 'ar' ? 'right' : 'left' }};">{{ __('other.error') }}</strong>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
                 </div>
                 <div class="toast-body">
@@ -250,8 +282,8 @@
             form.addEventListener('submit', function(e) {
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = `
-                    <span class="spinner-border spinner-border-sm me-2" role="status"></span>
-                    <span>Processing...</span>
+                    <span class="spinner-border spinner-border-sm {{ app()->getLocale() === 'ar' ? 'ms-2' : 'me-2' }}" role="status"></span>
+                    <span>{{ __('other.processing') }}</span>
                 `;
             });
 
@@ -268,7 +300,8 @@
 
     <style>
         /* Fix horizontal overflow and white space issues */
-        html, body {
+        html,
+        body {
             max-width: 100vw;
             overflow-x: hidden;
             margin: 0;
@@ -361,10 +394,11 @@
             .card-body {
                 padding: 10px !important;
             }
-            
+
             .form-control,
             .form-select {
-                font-size: 16px; /* Prevents zoom on iOS */
+                font-size: 16px;
+                /* Prevents zoom on iOS */
             }
         }
 
@@ -373,7 +407,7 @@
             .card-body {
                 padding: 5px !important;
             }
-            
+
             .text-center h2 {
                 font-size: 1.5rem !important;
             }
@@ -407,6 +441,33 @@
         .g-0,
         .gy-0 {
             --bs-gutter-y: 0;
+        }
+
+        /* RTL Support for Arabic */
+        [dir="rtl"] .card-body {
+            text-align: right;
+        }
+
+        [dir="rtl"] .form-label {
+            text-align: right;
+        }
+
+        [dir="rtl"] .form-control,
+        [dir="rtl"] .form-select {
+            text-align: right;
+            direction: rtl;
+        }
+
+        [dir="rtl"] .border-bottom {
+            text-align: right;
+        }
+
+        [dir="rtl"] .text-center {
+            text-align: right !important;
+        }
+
+        [dir="rtl"] .invalid-feedback {
+            text-align: right;
         }
     </style>
 

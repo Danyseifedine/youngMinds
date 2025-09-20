@@ -63,7 +63,7 @@ class RegistrationController extends Controller
             // Redirect to home with success message
             return redirect()->route('welcome')->with(
                 'success',
-                'Registration submitted successfully! We will contact you soon to confirm your enrollment.'
+                __('other.registration_submitted_successfully')
             );
         } catch (\Exception $e) {
             // Log the error and redirect back with error message

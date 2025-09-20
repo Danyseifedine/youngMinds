@@ -599,8 +599,7 @@
                     <strong>{{ $isArabic ? 'نجاح!' : 'Success!' }}</strong><br>
                     <span>{{ session('success') }}</span>
                 </div>
-                <button type="button" class="btn-close ms-2" onclick="closeToast()"
-                    aria-label="{{ $isArabic ? 'إغلاق' : 'Close' }}"></button>
+
             </div>
         </div>
     @endif

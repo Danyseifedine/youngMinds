@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Picture;
+use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
@@ -24,17 +25,19 @@ class CMSEditScreen extends Screen
      *
      * @return array
      */
-    public function query(): iterable
+    public function query(Request $request): iterable
     {
-        $cms = CMS::first();
+        $lang = $request->get('lang', 'en');
+        $cms = CMS::where('lang', $lang)->first();
 
-        // Create CMS record if it doesn't exist
+        // Create CMS record if it doesn't exist for this language
         if (!$cms) {
-            $cms = CMS::create([]);
+            $cms = CMS::create(['lang' => $lang]);
         }
 
         return [
-            'cms' => $cms
+            'cms' => $cms,
+            'selected_lang' => $lang
         ];
     }
 
@@ -55,7 +58,10 @@ class CMSEditScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'Edit all website content and copy across all sections';
+        $currentLang = request()->get('lang', 'en');
+        $langName = $currentLang === 'ar' ? 'العربية (Arabic)' : 'English';
+
+        return "Edit all website content and copy across all sections - Currently editing: {$langName} version";
     }
 
     /**
@@ -66,9 +72,22 @@ class CMSEditScreen extends Screen
     public function commandBar(): iterable
     {
         return [
+            Button::make('English')
+                ->icon('bs.globe')
+                ->method('switchLanguage')
+                ->parameters(['lang' => 'en'])
+                ->class('btn btn-outline-primary'),
+
+            Button::make('العربية')
+                ->icon('bs.globe')
+                ->method('switchLanguage')
+                ->parameters(['lang' => 'ar'])
+                ->class('btn btn-outline-primary'),
+
             Button::make('Save Changes')
                 ->icon('bs.check')
                 ->method('save')
+                ->parameters(['lang' => request()->get('lang', 'en')])
                 ->class('btn btn-success'),
         ];
     }
@@ -498,15 +517,34 @@ class CMSEditScreen extends Screen
     {
         $cmsData = $request->get('cms');
 
-        $cms = CMS::first();
+        // Get language from method parameters first, then URL query, then default to 'en'
+        $lang = $request->get('lang') ?? $request->query('lang', 'en');
+
+        $cms = CMS::where('lang', $lang)->first();
         if (!$cms) {
             $cms = new CMS();
+            $cms->lang = $lang;
         }
 
-        $cms->fill($cmsData)->save();
+        // Remove lang from cmsData if it exists to avoid overwriting
+        unset($cmsData['lang']);
 
-        Toast::success('Website content has been updated successfully!');
+        $cms->fill($cmsData);
+        $cms->lang = $lang; // Ensure language is set correctly
+        $cms->save();
 
-        return redirect()->route('platform.cms');
+        $langName = $lang === 'ar' ? 'Arabic' : 'English';
+        Toast::success("Website content has been updated successfully for {$langName}!");
+
+        return redirect()->route('platform.cms', ['lang' => $lang]);
+    }
+
+    /**
+     * Switch between languages
+     */
+    public function switchLanguage(Request $request)
+    {
+        $lang = $request->get('lang', 'en');
+        return redirect()->route('platform.cms', ['lang' => $lang]);
     }
 }
