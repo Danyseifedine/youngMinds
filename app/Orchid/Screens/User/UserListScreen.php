@@ -26,6 +26,7 @@ class UserListScreen extends Screen
     {
         return [
             'users' => User::with('roles')
+                ->whereNull('permissions')
                 ->filters(UserFiltersLayout::class)
                 ->defaultSort('id', 'desc')
                 ->paginate(),
@@ -37,7 +38,7 @@ class UserListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'User Management';
+        return 'Students Management';
     }
 
     /**
@@ -45,7 +46,7 @@ class UserListScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'A comprehensive list of all registered users, including their profiles and privileges.';
+        return 'A comprehensive list of all registered students/normal users, excluding administrators.';
     }
 
     public function permission(): ?iterable

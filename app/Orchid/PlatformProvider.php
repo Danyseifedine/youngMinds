@@ -67,7 +67,7 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.credit-card')
                 ->route('platform.payments'),
 
-            Menu::make(__('Users'))
+            Menu::make(__('Students'))
                 ->icon('bs.people')
                 ->route('platform.systems.users')
                 ->permission('platform.systems.users')
