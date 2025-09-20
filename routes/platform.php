@@ -16,6 +16,8 @@ use App\Orchid\Screens\SocialLinkEditScreen;
 use App\Orchid\Screens\SocialLinkListScreen;
 use App\Orchid\Screens\CourseEditScreen;
 use App\Orchid\Screens\CourseListScreen;
+use App\Orchid\Screens\PaymentEditScreen;
+use App\Orchid\Screens\PaymentListScreen;
 use App\Orchid\Screens\RegistrationEditScreen;
 use App\Orchid\Screens\RegistrationListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
@@ -220,3 +222,24 @@ Route::screen('registrations', RegistrationListScreen::class)
     ->breadcrumbs(fn(Trail $trail) => $trail
         ->parent('platform.index')
         ->push('Registrations', route('platform.registrations')));
+
+// Platform > Payments > Payment
+Route::screen('payments/{payment}/edit', PaymentEditScreen::class)
+    ->name('platform.payments.edit')
+    ->breadcrumbs(fn(Trail $trail, $payment) => $trail
+        ->parent('platform.payments')
+        ->push('Edit', route('platform.payments.edit', $payment)));
+
+// Platform > Payments > Create
+Route::screen('payments/create', PaymentEditScreen::class)
+    ->name('platform.payments.create')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.payments')
+        ->push('Create', route('platform.payments.create')));
+
+// Platform > Payments
+Route::screen('payments', PaymentListScreen::class)
+    ->name('platform.payments')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push('Payments', route('platform.payments')));

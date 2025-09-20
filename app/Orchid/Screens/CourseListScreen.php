@@ -79,8 +79,8 @@ class CourseListScreen extends Screen
 
                 TD::make('has_level', 'Has Levels')
                     ->render(function (Course $course) {
-                        return $course->has_level 
-                            ? '<span class="badge bg-info">Yes</span>' 
+                        return $course->has_level
+                            ? '<span class="badge bg-info">Yes</span>'
                             : '<span class="badge bg-secondary">No</span>';
                     })
                     ->sort()
@@ -100,8 +100,8 @@ class CourseListScreen extends Screen
 
                 TD::make('is_active', 'Status')
                     ->render(function (Course $course) {
-                        return $course->is_active 
-                            ? '<span class="badge bg-success">Active</span>' 
+                        return $course->is_active
+                            ? '<span class="badge bg-success">Active</span>'
                             : '<span class="badge bg-secondary">Inactive</span>';
                     })
                     ->sort()
@@ -109,11 +109,6 @@ class CourseListScreen extends Screen
                         1 => 'Active',
                         0 => 'Inactive',
                     ]),
-
-                TD::make('registrations_count', 'Registrations')
-                    ->render(function (Course $course) {
-                        return $course->registrations()->count();
-                    }),
 
                 TD::make('actions', 'Actions')
                     ->cantHide()
@@ -124,7 +119,7 @@ class CourseListScreen extends Screen
                                 Link::make('Edit')
                                     ->route('platform.courses.edit', $course)
                                     ->icon('bs.pencil'),
-                                
+
                                 Button::make('Delete')
                                     ->icon('bs.trash3')
                                     ->confirm('Are you sure you want to delete this course?')

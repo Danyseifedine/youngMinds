@@ -63,9 +63,9 @@ class PlatformProvider extends OrchidServiceProvider
                 ->route('platform.courses')
                 ->title('Registration'),
 
-            Menu::make('Registrations')
-                ->icon('bs.person-plus')
-                ->route('platform.registrations'),
+            Menu::make('Payments')
+                ->icon('bs.credit-card')
+                ->route('platform.payments'),
 
             Menu::make(__('Users'))
                 ->icon('bs.people')
