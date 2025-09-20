@@ -1,5 +1,5 @@
 <!-- feature_part start-->
-<section id="features" class="feature_part">
+<section id="features" class="feature_part" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
     <div class="container">
         <div class="row align-items-center gap-12">
             <!-- Left Column - Content -->
@@ -196,5 +196,3 @@
     </div>
 </section>
 <!-- feature_part end-->
-
-

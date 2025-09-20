@@ -1,5 +1,6 @@
 <!-- Programs & Courses Section -->
-<section id="programs-courses" class="programs_courses py-5" style="background: white;">
+<section id="programs-courses" class="programs_courses py-5" style="background: white;"
+    dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
     <div class="container">
         <!-- Centered Header -->
         <div class="row justify-content-center mb-5">

@@ -2,7 +2,7 @@
 
 namespace App\Orchid\Screens;
 
-use App\Models\Registration;
+use App\Models\Student;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Actions\Button;
@@ -24,7 +24,7 @@ class RegistrationListScreen extends Screen
     public function query(): iterable
     {
         return [
-            'registrations' => Registration::with('course')->latest()->paginate()
+            'students' => Student::with('user')->latest()->paginate()
         ];
     }
 
@@ -35,7 +35,7 @@ class RegistrationListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Registrations';
+        return 'Students';
     }
 
     /**
@@ -45,7 +45,7 @@ class RegistrationListScreen extends Screen
      */
     public function description(): ?string
     {
-        return 'Manage course registrations and applications';
+        return 'Manage student registrations and applications';
     }
 
     /**
@@ -56,9 +56,9 @@ class RegistrationListScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-            Link::make('New Registration')
+            Link::make('New Student')
                 ->icon('plus')
-                ->route('platform.registrations.create'),
+                ->route('platform.students.create'),
         ];
     }
 
@@ -70,11 +70,11 @@ class RegistrationListScreen extends Screen
     public function layout(): iterable
     {
         return [
-            Layout::table('registrations', [
-                TD::make('child_name', 'Child Name')
-                    ->render(function (Registration $registration) {
-                        return Link::make($registration->child_name)
-                            ->route('platform.registrations.edit', $registration);
+            Layout::table('students', [
+                TD::make('user.name', 'Student Name')
+                    ->render(function (Student $student) {
+                        return Link::make($student->user->name)
+                            ->route('platform.students.edit', $student);
                     })
                     ->sort()
                     ->cantHide(),
@@ -83,27 +83,13 @@ class RegistrationListScreen extends Screen
                     ->sort(),
 
                 TD::make('parent_phone', 'Phone')
-                    ->render(function (Registration $registration) {
-                        return '<a href="tel:' . $registration->parent_phone . '">' . $registration->parent_phone . '</a>';
-                    }),
-
-                TD::make('course.name', 'Course')
-                    ->render(function (Registration $registration) {
-                        return $registration->course ? $registration->course->name : '-';
-                    })
-                    ->sort(),
-
-                TD::make('selected_level', 'Level')
-                    ->render(function (Registration $registration) {
-                        if (!$registration->selected_level) {
-                            return '-';
-                        }
-                        return 'Level ' . $registration->selected_level;
+                    ->render(function (Student $student) {
+                        return '<a href="tel:' . $student->parent_phone . '">' . $student->parent_phone . '</a>';
                     }),
 
                 TD::make('preferred_time_slot', 'Time Slot')
-                    ->render(function (Registration $registration) {
-                        return $registration->preferred_time_slot ? ucfirst($registration->preferred_time_slot) : '-';
+                    ->render(function (Student $student) {
+                        return $student->preferred_time_slot ? ucfirst($student->preferred_time_slot) : '-';
                     })
                     ->sort()
                     ->filter(TD::FILTER_SELECT, [
@@ -114,9 +100,14 @@ class RegistrationListScreen extends Screen
                     ]),
 
                 TD::make('status', 'Status')
-                    ->render(function (Registration $registration) {
-                        $color = $registration->status_badge_color;
-                        return '<span class="badge bg-' . $color . '">' . $registration->formatted_status . '</span>';
+                    ->render(function (Student $student) {
+                        $colors = [
+                            'pending' => 'warning',
+                            'accepted' => 'success', 
+                            'cancelled' => 'danger'
+                        ];
+                        $color = $colors[$student->status] ?? 'secondary';
+                        return '<span class="badge bg-' . $color . '">' . ucfirst($student->status) . '</span>';
                     })
                     ->sort()
                     ->filter(TD::FILTER_SELECT, [
@@ -126,75 +117,75 @@ class RegistrationListScreen extends Screen
                     ]),
 
                 TD::make('created_at', 'Registered')
-                    ->render(function (Registration $registration) {
-                        return $registration->created_at->format('M d, Y H:i');
+                    ->render(function (Student $student) {
+                        return $student->created_at->format('M d, Y H:i');
                     })
                     ->sort(),
 
                 TD::make('actions', 'Actions')
                     ->cantHide()
-                    ->render(function (Registration $registration) {
+                    ->render(function (Student $student) {
                         return DropDown::make()
                             ->icon('bs.three-dots-vertical')
                             ->list([
                                 Link::make(' Edit')
-                                    ->route('platform.registrations.edit', $registration)
+                                    ->route('platform.students.edit', $student)
                                     ->icon('bs.pencil'),
 
                                 // Status-specific actions
-                                ...($registration->status === 'pending' ? [
+                                ...($student->status === 'pending' ? [
                                     Button::make(' Accept')
                                         ->icon('bs.check-circle')
-                                        ->confirm('Accept this registration?')
-                                        ->method('acceptRegistration')
-                                        ->parameters(['id' => $registration->id])
+                                        ->confirm('Accept this student?')
+                                        ->method('acceptStudent')
+                                        ->parameters(['id' => $student->id])
                                         ->class('btn btn-link dropdown-item text-success'),
 
                                     Button::make(' Cancel')
                                         ->icon('bs.x-circle')
-                                        ->confirm('Cancel this registration?')
-                                        ->method('cancelRegistration')
-                                        ->parameters(['id' => $registration->id])
+                                        ->confirm('Cancel this student application?')
+                                        ->method('cancelStudent')
+                                        ->parameters(['id' => $student->id])
                                         ->class('btn btn-link dropdown-item text-warning'),
                                 ] : []),
 
-                                ...($registration->status === 'accepted' ? [
+                                ...($student->status === 'accepted' ? [
                                     Button::make(' Mark as Pending')
                                         ->icon('bs.clock')
                                         ->confirm('Change status back to pending?')
-                                        ->method('pendingRegistration')
-                                        ->parameters(['id' => $registration->id])
+                                        ->method('pendingStudent')
+                                        ->parameters(['id' => $student->id])
                                         ->class('btn btn-link dropdown-item text-warning'),
 
                                     Button::make(' Cancel')
                                         ->icon('bs.x-circle')
-                                        ->confirm('Cancel this registration?')
-                                        ->method('cancelRegistration')
-                                        ->parameters(['id' => $registration->id])
+                                        ->confirm('Cancel this student application?')
+                                        ->method('cancelStudent')
+                                        ->parameters(['id' => $student->id])
                                         ->class('btn btn-link dropdown-item text-warning'),
                                 ] : []),
 
-                                ...($registration->status === 'cancelled' ? [
+                                ...($student->status === 'cancelled' ? [
                                     Button::make(' Reactivate')
                                         ->icon('bs.arrow-clockwise')
-                                        ->confirm('Reactivate this registration as pending?')
-                                        ->method('pendingRegistration')
-                                        ->parameters(['id' => $registration->id])
+                                        ->confirm('Reactivate this student as pending?')
+                                        ->method('pendingStudent')
+                                        ->parameters(['id' => $student->id])
                                         ->class('btn btn-link dropdown-item text-success'),
 
                                     Button::make(' Accept')
                                         ->icon('bs.check-circle')
-                                        ->confirm('Accept this registration?')
-                                        ->method('acceptRegistration')
-                                        ->parameters(['id' => $registration->id])
+                                        ->confirm('Accept this student?')
+                                        ->method('acceptStudent')
+                                        ->parameters(['id' => $student->id])
                                         ->class('btn btn-link dropdown-item text-success'),
                                 ] : []),
 
                                 Button::make(' Delete')
                                     ->icon('bs.trash3')
-                                    ->confirm('Are you sure you want to delete this registration?')
+                                    ->confirm('Are you sure you want to delete this student?')
                                     ->method('remove')
-                                    ->parameters(['id' => $registration->id])
+                                    ->parameters(['id' => $student->id])
                                     ->class('btn btn-link dropdown-item text-danger')
                             ]);
                     })
@@ -204,57 +195,57 @@ class RegistrationListScreen extends Screen
     }
 
     /**
-     * Accept registration.
+     * Accept student.
      */
-    public function acceptRegistration(Request $request)
+    public function acceptStudent(Request $request)
     {
-        $registration = Registration::findOrFail($request->get('id'));
-        $registration->status = 'accepted';
-        $registration->save();
+        $student = Student::findOrFail($request->get('id'));
+        $student->status = 'accepted';
+        $student->save();
 
-        Toast::success('Registration has been accepted successfully.');
+        Toast::success('Student has been accepted successfully.');
 
-        return redirect()->route('platform.registrations');
+        return redirect()->route('platform.students');
     }
 
     /**
-     * Cancel registration.
+     * Cancel student.
      */
-    public function cancelRegistration(Request $request)
+    public function cancelStudent(Request $request)
     {
-        $registration = Registration::findOrFail($request->get('id'));
-        $registration->status = 'cancelled';
-        $registration->save();
+        $student = Student::findOrFail($request->get('id'));
+        $student->status = 'cancelled';
+        $student->save();
 
-        Toast::warning('Registration has been cancelled.');
+        Toast::warning('Student application has been cancelled.');
 
-        return redirect()->route('platform.registrations');
+        return redirect()->route('platform.students');
     }
 
     /**
-     * Mark registration as pending.
+     * Mark student as pending.
      */
-    public function pendingRegistration(Request $request)
+    public function pendingStudent(Request $request)
     {
-        $registration = Registration::findOrFail($request->get('id'));
-        $registration->status = 'pending';
-        $registration->save();
+        $student = Student::findOrFail($request->get('id'));
+        $student->status = 'pending';
+        $student->save();
 
-        Toast::info('Registration has been marked as pending.');
+        Toast::info('Student has been marked as pending.');
 
-        return redirect()->route('platform.registrations');
+        return redirect()->route('platform.students');
     }
 
     /**
-     * Remove the registration.
+     * Remove the student.
      */
     public function remove(Request $request)
     {
-        $registration = Registration::findOrFail($request->get('id'));
-        $registration->delete();
+        $student = Student::findOrFail($request->get('id'));
+        $student->delete();
 
-        Toast::info('Registration was removed successfully.');
+        Toast::info('Student was removed successfully.');
 
-        return redirect()->route('platform.registrations');
+        return redirect()->route('platform.students');
     }
 }

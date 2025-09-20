@@ -1,5 +1,6 @@
 <!-- banner part start-->
-<section id="home" class="banner_part mb-12" @if ($section1['image']) style="position: relative;" @endif>
+<section id="home" class="banner_part mb-12" @if ($section1['image']) style="position: relative;" @endif
+    dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
     @if ($section1['image'])
         <style>
             .banner_part:after {

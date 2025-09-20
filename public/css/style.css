@@ -2960,6 +2960,151 @@ ul {
     }
 }
 
+/* RTL Support for Banner */
+[dir="rtl"] .banner_part {
+    background-position: top left;
+}
+
+[dir="rtl"] .banner_part:after {
+    right: auto;
+    left: 9%;
+}
+
+[dir="rtl"] .banner_part .banner_text {
+    text-align: right;
+}
+
+[dir="rtl"] .banner_part .banner_text .banner_text_iner {
+    text-align: right;
+}
+
+[dir="rtl"] .banner_part .banner_text h1,
+[dir="rtl"] .banner_part .banner_text h5,
+[dir="rtl"] .banner_part .banner_text p {
+    font-family: 'Cairo', 'Tajawal', 'Arial', sans-serif;
+    direction: rtl;
+}
+
+[dir="rtl"] .banner_part .banner_text .btn_1 {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+/* RTL responsive adjustments */
+@media (max-width: 576px) {
+    [dir="rtl"] .banner_part:after {
+        right: 0;
+        left: 0;
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    [dir="rtl"] .banner_part:after {
+        right: 0;
+        left: 0;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    [dir="rtl"] .banner_part:after {
+        right: 0;
+        left: 0;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    [dir="rtl"] .banner_part:after {
+        right: auto;
+        left: 5%;
+    }
+}
+
+/* RTL Support for Programs */
+[dir="rtl"] .programs_courses .section-header h2,
+[dir="rtl"] .programs_courses .section-header p,
+[dir="rtl"] .programs_courses .course-card h5,
+[dir="rtl"] .programs_courses .course-card h6,
+[dir="rtl"] .programs_courses .course-card ul,
+[dir="rtl"] .programs_courses .course-card p {
+    font-family: 'Cairo', 'Tajawal', 'Arial', sans-serif;
+    direction: rtl;
+}
+
+[dir="rtl"] .programs_courses .course-card ul {
+    text-align: right;
+    padding-right: 0;
+    padding-left: 20px;
+}
+
+[dir="rtl"] .programs_courses .course-card ul li {
+    text-align: right;
+}
+
+[dir="rtl"] .programs_courses .central-image h5,
+[dir="rtl"] .programs_courses .central-image p {
+    font-family: 'Cairo', 'Tajawal', 'Arial', sans-serif;
+    direction: rtl;
+}
+
+/* RTL Support for About/Learning Section */
+[dir="rtl"] .learning_part .row {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .learning_part .learning_member_text {
+    text-align: right;
+}
+
+[dir="rtl"] .learning_part .learning_member_text h2,
+[dir="rtl"] .learning_part .learning_member_text h5,
+[dir="rtl"] .learning_part .learning_member_text p,
+[dir="rtl"] .learning_part .learning_member_text ul {
+    font-family: 'Cairo', 'Tajawal', 'Arial', sans-serif;
+    direction: rtl;
+}
+
+[dir="rtl"] .learning_part .learning_member_text ul {
+    text-align: right;
+    padding-right: 0;
+    padding-left: 20px;
+}
+
+[dir="rtl"] .learning_part .learning_member_text ul li {
+    text-align: right;
+}
+
+[dir="rtl"] .learning_part .learning_member_text .btn_1 {
+    margin-right: 0;
+    margin-left: auto;
+}
+
+/* RTL Support for Advanced Features Section - Override existing learning_part rules */
+[dir="rtl"] .advance_feature.learning_part .row {
+    flex-direction: row-reverse !important;
+}
+
+[dir="rtl"] .advance_feature.learning_part .learning_member_text {
+    text-align: right;
+}
+
+[dir="rtl"] .advance_feature.learning_part .learning_member_text h2,
+[dir="rtl"] .advance_feature.learning_part .learning_member_text h4,
+[dir="rtl"] .advance_feature.learning_part .learning_member_text h5,
+[dir="rtl"] .advance_feature.learning_part .learning_member_text p {
+    font-family: 'Cairo', 'Tajawal', 'Arial', sans-serif;
+    direction: rtl;
+}
+
+[dir="rtl"] .advance_feature.learning_part .learning_member_text_iner {
+    text-align: right;
+}
+
+[dir="rtl"] .advance_feature.learning_part .learning_member_text_iner h4,
+[dir="rtl"] .advance_feature.learning_part .learning_member_text_iner p {
+    font-family: 'Cairo', 'Tajawal', 'Arial', sans-serif;
+    direction: rtl;
+}
+
 /**************** hero part css end ****************/
 /**************** about css start ****************/
 /* line 2, E:/172 Etrain Education/172_Etrain_Education_html/sass/_about.scss */

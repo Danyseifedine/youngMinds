@@ -139,5 +139,7 @@ class CMS extends Model
         // Tenth Section - Footer
         'footer_title',
         'footer_text',
+
+        'lang',
     ];
 }

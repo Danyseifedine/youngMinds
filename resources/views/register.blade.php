@@ -158,48 +158,11 @@
                                 </div>
                             </div>
 
-                            <!-- Course Selection Section -->
+                            <!-- Additional Information Section -->
                             <div class="mb-4">
                                 <h5 class="border-bottom pb-2 mb-3" style="color: #FFCA4C;">
-                                    <i class="fas fa-book me-2"></i>Course Selection
+                                    <i class="fas fa-info-circle me-2"></i>Additional Information
                                 </h5>
-
-                                <div class="mb-3">
-                                    <label for="course_id" class="form-label fw-medium">
-                                        Course <span class="text-danger">*</span>
-                                    </label>
-                                    <select class="form-select @error('course_id') is-invalid @enderror"
-                                        id="course_id" name="course_id" required
-                                        style="border: 2px solid #e9ecef; border-radius: 10px; padding: 10px 12px; line-height: 1.5;">
-                                        <option value="">Select a course</option>
-                                        @foreach ($courses as $course)
-                                            <option value="{{ $course->id }}"
-                                                data-has-level="{{ $course->has_level ? 'true' : 'false' }}"
-                                                data-level-count="{{ $course->level ?: 0 }}"
-                                                {{ old('course_id') == $course->id ? 'selected' : '' }}>
-                                                {{ $course->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('course_id')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <!-- Dynamic Level Selection -->
-                                <div class="mb-3 d-none" id="levelGroup">
-                                    <label for="selected_level" class="form-label fw-medium">
-                                        Level <span class="text-danger">*</span>
-                                    </label>
-                                    <select class="form-select @error('selected_level') is-invalid @enderror"
-                                        id="selected_level" name="selected_level"
-                                        style="border: 2px solid #e9ecef; border-radius: 10px; padding: 10px 12px; line-height: 1.5;">
-                                        <option value="">Select level</option>
-                                    </select>
-                                    @error('selected_level')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
 
                                 <div class="mb-3">
                                     <label for="preferred_time_slot" class="form-label fw-medium">
@@ -279,53 +242,9 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const courseSelect = document.getElementById('course_id');
-            const levelGroup = document.getElementById('levelGroup');
-            const levelSelect = document.getElementById('selected_level');
             const form = document.getElementById('registrationForm');
             const submitBtn = document.getElementById('submitBtn');
             const submitText = document.getElementById('submitText');
-
-            // Handle course selection change
-            courseSelect.addEventListener('change', function() {
-                const selectedOption = this.options[this.selectedIndex];
-                const hasLevel = selectedOption.getAttribute('data-has-level') === 'true';
-                const levelCount = parseInt(selectedOption.getAttribute('data-level-count')) || 0;
-
-                // Clear previous level options
-                levelSelect.innerHTML = '<option value="">Select level</option>';
-
-                if (hasLevel && levelCount > 0) {
-                    // Show level group and populate options
-                    levelGroup.classList.remove('d-none');
-                    levelSelect.setAttribute('required', 'required');
-
-                    for (let i = 1; i <= levelCount; i++) {
-                        const option = document.createElement('option');
-                        option.value = i;
-                        option.textContent = `Level ${i}`;
-                        levelSelect.appendChild(option);
-                    }
-                } else {
-                    // Hide level group and remove required attribute
-                    levelGroup.classList.add('d-none');
-                    levelSelect.removeAttribute('required');
-                    levelSelect.value = '';
-                }
-            });
-
-            // Initialize on page load if there's an old course selection
-            if (courseSelect.value) {
-                courseSelect.dispatchEvent(new Event('change'));
-
-                // Restore selected level if exists
-                const oldLevel = '{{ old('selected_level') }}';
-                if (oldLevel) {
-                    setTimeout(() => {
-                        levelSelect.value = oldLevel;
-                    }, 100);
-                }
-            }
 
             // Form submission handling
             form.addEventListener('submit', function(e) {

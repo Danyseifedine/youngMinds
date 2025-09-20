@@ -10,7 +10,9 @@
                         <i class="fas fa-calendar-alt"></i>
                     </span>
                     <h2 class="fw-bold mb-3" style="color: #333; font-size: clamp(2rem, 5vw, 3rem);">
-                        {{ $section6['before_highlighted_word'] }} <span style="color: #FFCA4C;">{{ $section6['highlighted_word'] }}</span> {{ $section6['after_highlighted_word'] }}
+                        {{ $section6['before_highlighted_word'] }} <span
+                            style="color: #FFCA4C;">{{ $section6['highlighted_word'] }}</span>
+                        {{ $section6['after_highlighted_word'] }}
                     </h2>
                     <div class="title-underline mx-auto mb-4"
                         style="width: 80px; height: 4px; background: linear-gradient(90deg, #FFCA4C, #FFD700); border-radius: 2px;">
@@ -79,9 +81,12 @@
                                                             <i class="far fa-clock"></i>
                                                             <span>
                                                                 @if ($event->start_date && $event->end_date)
-                                                                    {{ \Carbon\Carbon::parse($event->start_date)->format('M d') }} - {{ \Carbon\Carbon::parse($event->end_date)->format('M d, Y') }}
+                                                                    {{ \Carbon\Carbon::parse($event->start_date)->format('M d') }}
+                                                                    -
+                                                                    {{ \Carbon\Carbon::parse($event->end_date)->format('M d, Y') }}
                                                                 @elseif ($event->start_date)
-                                                                    {{ \Carbon\Carbon::parse($event->start_date)->format('M d, Y') }} - Present
+                                                                    {{ \Carbon\Carbon::parse($event->start_date)->format('M d, Y') }}
+                                                                    - Present
                                                                 @else
                                                                     Date TBA
                                                                 @endif

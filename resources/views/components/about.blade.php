@@ -1,13 +1,13 @@
 <!-- learning part start-->
-<section id="about" class="learning_part">
+<section id="about" class="learning_part" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
     <div class="container">
         <div class="row">
             <div class="col-md-7 col-lg-7">
                 <div class="learning_img">
-                    @if($section7['image'])
+                    @if ($section7['image'])
                         <img src="{{ $section7['image'] }}" alt="{{ $section7['title'] }}">
                     @else
-                        <img src="img/learning_img.png" alt="">
+                        <img src="{{ asset('img/learning_img.png') }}" alt="">
                     @endif
                 </div>
             </div>

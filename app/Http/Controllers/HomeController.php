@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\CMS;
 use Illuminate\Http\Request;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $cms = CMS::first();
+        $lang = LaravelLocalization::getCurrentLocale();
+        $cms = CMS::where('lang', $lang)->first();
 
         $section1 = [
             'subtitle' => $cms->hero_subtitle,
@@ -142,5 +144,4 @@ class HomeController extends Controller
 
         return view('welcome', compact('section1', 'section2', 'section3', 'section4', 'section5', 'section6', 'section7', 'section8', 'section9', 'section10'));
     }
-
 }
