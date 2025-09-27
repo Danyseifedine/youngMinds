@@ -18,6 +18,12 @@ use App\Orchid\Screens\CourseEditScreen;
 use App\Orchid\Screens\CourseListScreen;
 use App\Orchid\Screens\PaymentEditScreen;
 use App\Orchid\Screens\PaymentListScreen;
+use App\Orchid\Screens\StatisticCategoryEditScreen;
+use App\Orchid\Screens\StatisticCategoryListScreen;
+use App\Orchid\Screens\StudentStatisticEditScreen;
+use App\Orchid\Screens\StudentStatisticListScreen;
+use App\Orchid\Screens\StudentProfileEditScreen;
+use App\Orchid\Screens\StudentProfileListScreen;
 use App\Orchid\Screens\RegistrationEditScreen;
 use App\Orchid\Screens\RegistrationListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
@@ -243,3 +249,66 @@ Route::screen('payments', PaymentListScreen::class)
     ->breadcrumbs(fn(Trail $trail) => $trail
         ->parent('platform.index')
         ->push('Payments', route('platform.payments')));
+
+// Platform > Statistics > Statistic Categories > Category
+Route::screen('statistic-categories/{category}/edit', StatisticCategoryEditScreen::class)
+    ->name('platform.statistic-categories.edit')
+    ->breadcrumbs(fn(Trail $trail, $category) => $trail
+        ->parent('platform.statistic-categories')
+        ->push('Edit', route('platform.statistic-categories.edit', $category)));
+
+// Platform > Statistics > Statistic Categories > Create
+Route::screen('statistic-categories/create', StatisticCategoryEditScreen::class)
+    ->name('platform.statistic-categories.create')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.statistic-categories')
+        ->push('Create', route('platform.statistic-categories.create')));
+
+// Platform > Statistics > Statistic Categories
+Route::screen('statistic-categories', StatisticCategoryListScreen::class)
+    ->name('platform.statistic-categories')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push('Statistic Categories', route('platform.statistic-categories')));
+
+// Platform > Statistics > Student Statistics > Statistic
+Route::screen('student-statistics/{statistic}/edit', StudentStatisticEditScreen::class)
+    ->name('platform.student-statistics.edit')
+    ->breadcrumbs(fn(Trail $trail, $statistic) => $trail
+        ->parent('platform.student-statistics')
+        ->push('Edit', route('platform.student-statistics.edit', $statistic)));
+
+// Platform > Statistics > Student Statistics > Create
+Route::screen('student-statistics/create', StudentStatisticEditScreen::class)
+    ->name('platform.student-statistics.create')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.student-statistics')
+        ->push('Create', route('platform.student-statistics.create')));
+
+// Platform > Statistics > Student Statistics
+Route::screen('student-statistics', StudentStatisticListScreen::class)
+    ->name('platform.student-statistics')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push('Student Statistics', route('platform.student-statistics')));
+
+// Platform > Student Profiles > Student Profile
+Route::screen('student-profiles/{profile}/edit', StudentProfileEditScreen::class)
+    ->name('platform.student-profiles.edit')
+    ->breadcrumbs(fn(Trail $trail, $profile) => $trail
+        ->parent('platform.student-profiles')
+        ->push('Edit', route('platform.student-profiles.edit', $profile)));
+
+// Platform > Student Profiles > Create
+Route::screen('student-profiles/create', StudentProfileEditScreen::class)
+    ->name('platform.student-profiles.create')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.student-profiles')
+        ->push('Create', route('platform.student-profiles.create')));
+
+// Platform > Student Profiles
+Route::screen('student-profiles', StudentProfileListScreen::class)
+    ->name('platform.student-profiles')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push('Student Profiles', route('platform.student-profiles')));

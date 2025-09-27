@@ -67,6 +67,19 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.credit-card')
                 ->route('platform.payments'),
 
+            Menu::make('Statistic Categories')
+                ->icon('bs.pie-chart')
+                ->route('platform.statistic-categories')
+                ->title('Analytics'),
+
+            Menu::make('Student Statistics')
+                ->icon('bs.graph-up')
+                ->route('platform.student-statistics'),
+
+            Menu::make('Student Profiles')
+                ->icon('bs.person-badge')
+                ->route('platform.student-profiles'),
+
             Menu::make(__('Students'))
                 ->icon('bs.people')
                 ->route('platform.systems.users')

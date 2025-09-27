@@ -14,6 +14,9 @@ Route::group(
     function () {
         Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
+        // Student area route
+        Route::get('/student', [HomeController::class, 'student'])->name('student');
+
         // Registration routes
         Route::get('/register', [RegistrationController::class, 'show'])->name('registration.form');
         Route::post('/register', [RegistrationController::class, 'submit'])->name('registration.submit');

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\CMS;
+use App\Models\StudentStatisticCategory;
+use App\Models\StudentStatistic;
 use Illuminate\Http\Request;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -143,5 +145,73 @@ class HomeController extends Controller
         ];
 
         return view('welcome', compact('section1', 'section2', 'section3', 'section4', 'section5', 'section6', 'section7', 'section8', 'section9', 'section10'));
+    }
+
+    public function student()
+    {
+        $lang = LaravelLocalization::getCurrentLocale();
+        $cms = CMS::where('lang', $lang)->first();
+
+        // Get active statistic categories
+        $categories = StudentStatisticCategory::active()->get();
+
+        // Get statistics data for charts
+        $statisticsData = [];
+        foreach ($categories as $category) {
+            $statistics = StudentStatistic::with('user')
+                ->where('category_id', $category->id)
+                ->get();
+
+            if ($statistics->count() > 0) {
+                $statisticsData[] = [
+                    'category' => $category,
+                    'data' => $statistics->map(function ($stat) {
+                        return [
+                            'student_name' => $stat->user->name,
+                            'percentage' => $stat->percentage
+                        ];
+                    })->toArray()
+                ];
+            }
+        }
+
+        // If no real data exists, create sample data for testing
+        if (empty($statisticsData)) {
+            $statisticsData = [
+                [
+                    'category' => (object) [
+                        'id' => 1,
+                        'title' => 'Sample Performance',
+                        'chart_type' => 'pie'
+                    ],
+                    'data' => [
+                        ['student_name' => 'Ahmed Ali', 'percentage' => 85],
+                        ['student_name' => 'Sara Mohamed', 'percentage' => 92],
+                        ['student_name' => 'Omar Hassan', 'percentage' => 78],
+                        ['student_name' => 'Fatima Ahmed', 'percentage' => 88]
+                    ]
+                ],
+                [
+                    'category' => (object) [
+                        'id' => 2,
+                        'title' => 'Sample Skills',
+                        'chart_type' => 'donut'
+                    ],
+                    'data' => [
+                        ['student_name' => 'Programming', 'percentage' => 90],
+                        ['student_name' => 'Mathematics', 'percentage' => 75],
+                        ['student_name' => 'Science', 'percentage' => 82]
+                    ]
+                ]
+            ];
+        }
+
+
+        $section10 = [
+            'title' => $cms->footer_title,
+            'text' => $cms->footer_text,
+        ];
+
+        return view('student', compact('section10', 'statisticsData'));
     }
 }

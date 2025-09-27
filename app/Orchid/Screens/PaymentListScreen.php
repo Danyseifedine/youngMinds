@@ -29,16 +29,24 @@ class PaymentListScreen extends Screen
     {
         $paymentsQuery = Payment::with(['user', 'course'])->filters();
 
-        // Calculate total revenue based on current filters
+        // Calculate comprehensive financial metrics based on current filters
         $totalRevenue = $paymentsQuery->sum('amount_paid');
         $totalPayments = $paymentsQuery->count();
+        $totalOwedToStudents = $paymentsQuery->sum('owe_to_student');
+        $totalOwedFromStudents = $paymentsQuery->sum('owe_from_student');
+
+        // Net profit = Total revenue - what we owe to students + what students owe us
+        $netProfit = $totalRevenue - $totalOwedToStudents + $totalOwedFromStudents;
 
         $payments = $paymentsQuery->latest()->paginate();
 
         return [
             'payments' => $payments,
             'totalRevenue' => $totalRevenue,
-            'totalPayments' => $totalPayments
+            'totalPayments' => $totalPayments,
+            'totalOwedToStudents' => $totalOwedToStudents,
+            'totalOwedFromStudents' => $totalOwedFromStudents,
+            'netProfit' => $netProfit
         ];
     }
 
@@ -62,15 +70,17 @@ class PaymentListScreen extends Screen
         $data = $this->query();
         $hasFilters = !empty(array_filter(request('filter', [])));
 
-        $description = 'Manage student payments, course fees, and financial tracking';
+        $prefix = $hasFilters ? 'Filtered Results' : 'Total';
 
-        if ($hasFilters) {
-            $description .= " | Filtered Results: {$data['totalPayments']} payments - Total Revenue: $" . number_format($data['totalRevenue'], 2);
-        } else {
-            $description .= " | Total: {$data['totalPayments']} payments - Total Revenue: $" . number_format($data['totalRevenue'], 2);
-        }
+        $metrics = [
+            "Payments: {$data['totalPayments']}",
+            "Revenue: $" . number_format($data['totalRevenue'], 2),
+            "We Owe Students: $" . number_format($data['totalOwedToStudents'], 2),
+            "Students Owe Us: $" . number_format($data['totalOwedFromStudents'], 2),
+            "Net Profit: $" . number_format($data['netProfit'], 2)
+        ];
 
-        return $description;
+        return "$prefix | " . implode(' | ', $metrics);
     }
 
     /**
